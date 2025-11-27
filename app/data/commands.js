@@ -1,7 +1,6 @@
 export const commands = {
   help: `
 Available Commands:
-
   about
   skills
   projects

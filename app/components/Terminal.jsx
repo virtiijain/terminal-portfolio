@@ -20,7 +20,7 @@ export default function Terminal() {
     if (clean === "?" || clean === "help") {
       output = commands["help"];
     } else {
-      output = commands[clean] || "Command not found. Type 'help'.";
+      output = commands[clean] || "Command not found. Type 'help' or '?'.";
     }
 
     setHistory((prev) => [...prev, { cmd, output }]);
@@ -41,20 +41,18 @@ export default function Terminal() {
     <div className="w-full text-left max-h-[400px]">
       {history.map((item, i) => (
         <div key={i} className="mb-2">
-          <p className="text-gray-200 text-sm lg:text-base">
+          <p className="text-base lg:text-base">
             visitor@ivirti.me:~$ {item.cmd}
           </p>
-          <pre className="whitespace-pre-line mt-1 text-sm">{item.output}</pre>
+          <pre className="whitespace-pre-line text-sm">{item.output}</pre>
         </div>
       ))}
       <div ref={bottomRef} />
       <form onSubmit={submitHandler} className="flex items-center gap-2">
-        <span className="text-gray-200 text-sm lg:text-base">
-          visitor@ivirti.me:~$
-        </span>
+        <span className="text-base lg:text-base">visitor@ivirti.me:~$</span>
         <input
           autoFocus
-          className="flex-1 bg-transparent outline-none text-gray-100"
+          className="flex-1 bg-transparent outline-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
