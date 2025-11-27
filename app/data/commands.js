@@ -2,14 +2,14 @@ export const commands = {
   help: `
 Available Commands:
 
-  about       - Displays information about me.
-  skills      - Shows my technical skills and the tools I use.
-  projects    - Lists the projects I have built.
-  experience  - Provides details of my work experience.
-  education   - Shows my academic background.
-  social      - Displays my social links and contact info.
-  clear       - Clears the terminal screen.
-Type the commands as shown to explore more!
+  about
+  skills
+  projects
+  experience
+  education 
+  social
+  clear
+Tip: Type the commands as shown to explore more!
 `,
 
   about: `

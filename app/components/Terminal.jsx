@@ -6,7 +6,7 @@ import { commands } from "../data/commands";
 export default function Terminal() {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState("");
-  const scrollRef = useRef(null);
+  const bottomRef = useRef(null);
 
   const runCommand = (cmd) => {
     const clean = cmd.toLowerCase();
@@ -34,25 +34,24 @@ export default function Terminal() {
   };
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
   return (
-    <div
-      ref={scrollRef}
-      className="w-full text-left max-h-[400px] overflow-y-auto"
-    >
+    <div className="w-full text-left max-h-[400px]">
       {history.map((item, i) => (
         <div key={i} className="mb-2">
-          <p className="text-gray-200">visitor@ivirti.me:~$ {item.cmd}</p>
-          <pre className="whitespace-pre-line mt-1">{item.output}</pre>
+          <p className="text-gray-200 text-sm lg:text-base">
+            visitor@ivirti.me:~$ {item.cmd}
+          </p>
+          <pre className="whitespace-pre-line mt-1 text-sm">{item.output}</pre>
         </div>
       ))}
-
-      <form onSubmit={submitHandler} className="flex items-center gap-2 mt-3">
-        <span className="text-gray-200">visitor@ivirti.me:~$</span>
+      <div ref={bottomRef} />
+      <form onSubmit={submitHandler} className="flex items-center gap-2">
+        <span className="text-gray-200 text-sm lg:text-base">
+          visitor@ivirti.me:~$
+        </span>
         <input
           autoFocus
           className="flex-1 bg-transparent outline-none text-gray-100"
